@@ -6,16 +6,16 @@ This directory already has the gitflix csvs in the `csv-project/extract` directo
 You can either build your own docker image to install meltano, or you can run their docker image.
 
 To build your own docker image:
-    docker build -t melty .
+    `docker build -t melty .`
 
 Then run it:
-    docker run -it --rm -v $PWD:/usr/local/share/meltano -w /usr/local/share/meltano bash
+    `docker run -it --rm -v $PWD:/usr/local/share/meltano -w /usr/local/share/meltano bash`
 
 
 ## Using the meltano image
 You can use their image with python3.8 like this, port 5000 is where the UI listens.
 
-   docker run -it --rm -p 5000:5000 -v $PWD:/usr/local/share/cfp/meltano -w /usr/local/share/cfp/meltano --entrypoint bash meltano/meltano:latest-python3.8
+    `docker run -it --rm -p 5000:5000 -v $PWD:/usr/local/share/cfp/meltano -w /usr/local/share/cfp/meltano --entrypoint bash meltano/meltano:latest-python3.8`
 
 Once you are in there at the command line you can run `meltano` commands as you expect to.
 

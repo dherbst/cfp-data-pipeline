@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+    postgres:
+        network_mode: bridge
+        image: postgres:13.1
+        volumes:
+          - ./pgdata:/var/lib/postgresql/data/
+        environment:
+          - POSTGRES_USER=admin
+          - POSTGRES_PASSWORD=password
+          - POSTGRES_DB=melty-cheese
+          - ALLOW_IP_RANGE=0.0.0.0/0
+        ports:
+          - "5432:5432"

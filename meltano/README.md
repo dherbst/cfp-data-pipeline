@@ -1,3 +1,71 @@
+# Meltano - an introduction
+I'm not a meltano expert, this is my first time looking at meltano and these types of ELT tools.  The last time I did ELT I wrote my own tools using python, and before that I used Microsoft SSIS pretty extensively.
+
+From meltano.com, meltano is a an open source platform for building, running, and orchestrating ELT pipelines.  These are made up of
+
+- Singer taps (sources) and targets (destinations) these are the EL parts of ELT
+- dbt models for transformation - this is the T part of ELT
+- airflow orchestration - for creating jobs to run pipelines
+
+The easiest way to get started is to use meltano as a docker image.  You can set up an alias like:
+
+    alias meltano="docker run -it --rm -p 5000:5000 -v ${PWD}:/usr/local/share/cfp -w /usr/local/share/cfp meltano/meltano:latest-python3.8 $@"
+
+And then type a command like `meltano --help`
+
+```
+Usage: meltano [OPTIONS] COMMAND [ARGS]...
+
+  Get help at https://www.meltano.com/docs/command-line-interface.html
+
+Options:
+  --log-level [debug|info|warning|error|critical]
+  -v, --verbose
+  --version                       Show the version and exit.
+  --help                          Show this message and exit.
+
+Commands:
+  add       Add a plugin to your project.
+  config
+  discover
+  elt       meltano elt EXTRACTOR_NAME LOADER_NAME extractor_name: Which...
+  init      Creates a new Meltano project
+  install   Installs all the dependencies of your project based on the...
+  invoke
+  schedule
+  schema
+  select
+  ui
+  upgrade
+  user
+```
+
+If you create a project, like `meltano init csv-project` it creates a directory structure for the different ELT tools to communicate in a standard way.
+
+```
+csv-project $ tree
+.
+├── README.md
+├── analyze
+│   ├── dashboards
+│   └── reports
+├── extract
+│   ├── GitFlixEpisodes.csv
+│   ├── GitFlixStreams.csv
+│   ├── GitFlixUsers.csv
+│   └── files-def.json
+├── load
+├── meltano.yml
+├── model
+├── notebook
+├── orchestrate
+├── requirements.txt
+└── transform
+```
+
+If you run the `meltano` command without any arguments, it is like running `meltano ui` which starts a webserver on port 5000 which allows you to configure the `meltano.yml` file and see your pipelines and some logs.
+
+
 # Meltano demonstration project
 This runs the csv import tutorial at http://meltano.com/tutorials/csv-with-postgres.html#motivation-and-running-example
 

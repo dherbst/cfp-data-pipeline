@@ -1,0 +1,31 @@
+version: 1
+send_anonymous_usage_stats: true
+project_id: 7f2666b4-cb7e-491a-a517-7e5cee15a865
+plugins:
+  extractors:
+  - name: tap-slack
+    variant: singer-io
+    namespace: tap_slack
+    pip_url: tap-slack
+    executable: tap-slack
+    capabilities:
+      - catalog
+      - discover
+      - state
+    config:
+      token: token_here
+      start_date: 2021-01-08 00:00:00
+      private_channels: false
+      join_public_channels: true
+      exclude_archived: true
+  loaders:
+  - name: target-csv
+    variant: singer-io
+    pip_url: target-csv
+schedules:
+- name: slack-to-csv
+  extractor: tap-slack
+  loader: target-csv
+  transform: skip
+  interval: '@once'
+  start_date: 2021-01-08 00:00:00

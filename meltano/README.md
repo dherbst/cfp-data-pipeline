@@ -9,7 +9,7 @@ From meltano.com, meltano is a an open source platform for building, running, an
 
 The easiest way to get started is to use meltano as a docker image.  You can set up an alias like:
 
-    alias meltano="docker run -it --rm -p 5000:5000 -v ${PWD}:/usr/local/share/cfp -w /usr/local/share/cfp meltano/meltano:latest-python3.8 $@"
+    alias meltano='docker run -it --rm -p 5000:5000 -v ${PWD}:/usr/local/share/cfp -w /usr/local/share/cfp meltano/meltano:latest-python3.8 $@'
 
 And then type a command like `meltano --help`
 

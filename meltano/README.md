@@ -79,7 +79,7 @@ To build your own docker image:
 
 Then run it:
 
-    docker run -it --rm -v $PWD:/usr/local/share/meltano -w /usr/local/share/meltano bash
+    docker run -it --rm -v $PWD:/usr/local/share/meltano -w /usr/local/share/meltano melty bash
 
 
 ## Using the meltano image

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Create SSH key
-        if: ${{ github.repository_owner == 'CodeForPhilly' }}
+        if: ${{ secrets.DEFAULT_USER != '' }}
         run: |
           mkdir -p ~/.ssh/
           echo "$PROD_SSHKEY" > ~/.ssh/private.key

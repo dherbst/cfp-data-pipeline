@@ -11,12 +11,13 @@ jobs:
     steps:
       - name: Create SSH key
         run: |
-          if [ -n "${{ secrets.PROD_SSHKEY }}" ];
-          then
+          if [ -n "${PROD_SSHKEY}" ]; then
             mkdir -p ~/.ssh/
             echo "$PROD_SSHKEY" > ~/.ssh/private.key
             sudo chmod 600 ~/.ssh/private.key
             echo "$PROD_SSHKNOWNHOSTS" > ~/.ssh/known_hosts
+          else
+            echo No PROD_SSHKEY set, skipping this step.
           fi
         shell: bash
         env:
@@ -68,6 +69,8 @@ jobs:
               mv .env cfp-data-pipeline
               cd cfp-data-pipeline && docker-compose down && docker-compose up --build -d
             "
+          else
+            echo No PROD_USERNAME set, skipping Copy to .env server step.
           fi
         env:
           PROD_USERNAME: ${{ secrets.PROD_USERNAME }}

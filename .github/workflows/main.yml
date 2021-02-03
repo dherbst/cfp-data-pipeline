@@ -2,7 +2,7 @@ name: main
 on:
   workflow_dispatch:
   push:
-    branches: ["master", "staging"]
+    branches: ["master", "staging", "only-deploy-job-on-cfp"]
 
 jobs:
   deploy:

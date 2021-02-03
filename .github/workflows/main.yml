@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Create SSH key
+        if: ${ secrets.PROD_SSHKEY } != ""
         run: |
           if [ -n "${PROD_SSHKEY}" ]; then
             mkdir -p ~/.ssh/

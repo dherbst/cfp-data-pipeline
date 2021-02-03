@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Create SSH key
         run: |
-          if [ -z ${{ secrets.DEFAULT_USER }} ];
+          if [ -n ${DEFAULT_USER} ];
           then
             mkdir -p ~/.ssh/
             echo "$PROD_SSHKEY" > ~/.ssh/private.key

@@ -10,12 +10,14 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Create SSH key
-        if: secrets.DEFAULT_USER != ''
         run: |
-          mkdir -p ~/.ssh/
-          echo "$PROD_SSHKEY" > ~/.ssh/private.key
-          sudo chmod 600 ~/.ssh/private.key
-          echo "$PROD_SSHKNOWNHOSTS" > ~/.ssh/known_hosts
+          if [ -z ${{ secrets.DEFAULT_USER }} ];
+          then
+            mkdir -p ~/.ssh/
+            echo "$PROD_SSHKEY" > ~/.ssh/private.key
+            sudo chmod 600 ~/.ssh/private.key
+            echo "$PROD_SSHKNOWNHOSTS" > ~/.ssh/known_hosts
+          fi
         shell: bash
         env:
           PROD_SSHKEY: ${{secrets.PROD_SSHKEY}}

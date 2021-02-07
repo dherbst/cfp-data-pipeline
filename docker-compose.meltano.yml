@@ -7,7 +7,7 @@ services:
     environment:
       - POSTGRES_USER=${DEFAULT_USER}
       - POSTGRES_PASSWORD=${DEFAULT_PASSWORD}
-      - POSTGRES_DB=meltano
+      - POSTGRES_DB=datawarehouse
     ports:
       - "5678:5432"
   meltano:
